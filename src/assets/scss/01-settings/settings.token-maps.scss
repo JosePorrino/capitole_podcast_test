@@ -1,0 +1,46 @@
+$s-gaps-map: (
+	'32': 32,
+	'24': 24,
+	'16': 16,
+	'12': 12,
+	'8': 8,
+	'6': 6,
+	'4': 4,
+	'0': 0,
+);
+
+/* Tamaños para margin y padding */
+$s-spaceamounts-list: (
+	240,
+	64,
+	42,
+	40,
+	35,
+	32,
+	30,
+	28,
+	27,
+	24,
+	21,
+	18,
+	16,
+	14,
+	13,
+	12,
+	11,
+	10,
+	6,
+	0
+);
+
+/* Lados */
+$s-sides-list: (top, bottom, left, right);
+
+/* Alineamiento */
+$s-align-map: (
+	'center': center,
+	'left': left,
+	'right': right,
+	'start': start,
+	'end': end,
+);

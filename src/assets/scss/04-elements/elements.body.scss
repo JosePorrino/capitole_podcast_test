@@ -1,0 +1,17 @@
+body {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	font-family: $font-body;
+	font-size: t-px-rem($base-font-size);
+	line-height: 1.2;
+	color: $color-dark;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	&.is-blocked,
+	&.is-modal-open,
+	&.is-gradpanel-open {
+		overflow: hidden;
+	}
+}

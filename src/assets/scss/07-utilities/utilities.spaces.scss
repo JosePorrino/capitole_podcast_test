@@ -1,0 +1,61 @@
+@each $space in $s-spaceamounts-list {
+	// vertical
+	.u-margin\:v-#{$space} {
+		margin: #{t-px-rem($space)} 0;
+	}
+
+	.u-padding\:v-#{$space} {
+		padding: #{t-px-rem($space)} 0;
+	}
+
+	// horizontal
+	.u-margin\:h-#{$space} {
+		margin: 0 #{t-px-rem($space)};
+	}
+
+	.u-padding\:h-#{$space} {
+		padding: 0 #{t-px-rem($space)};
+	}
+
+	.u-padding\:#{$space} {
+		padding: #{t-px-rem($space)};
+	}
+
+	.u-margin\:#{$space} {
+		margin: #{t-px-rem($space)};
+	}
+
+	@each $side in $s-sides-list {
+		.u-margin\:#{str-slice($side, 0, 1)}-#{$space} {
+			margin-#{$side}: #{t-px-rem($space)};
+		}
+
+		.u-padding\:#{str-slice($side, 0, 1)}-#{$space} {
+			padding-#{$side}: #{t-px-rem($space)};
+		}
+	}
+}
+
+.u-fullwidth {
+	width: 100%;
+}
+
+.u-overflow-hidden {
+	overflow: hidden;
+}
+
+.u-align-items {
+	@each $name, $align in $s-align-map {
+		&\:#{$name} {
+			align-items: $align;
+		}
+	}
+}
+
+.u-align-self {
+	@each $name, $align in $s-align-map {
+		&\:#{$name} {
+			align-self: $align;
+		}
+	}
+}
