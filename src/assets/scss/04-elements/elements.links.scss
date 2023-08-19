@@ -1,0 +1,15 @@
+a {
+	color: $color-primary;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a.no-style {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}

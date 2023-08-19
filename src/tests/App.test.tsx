@@ -1,6 +1,6 @@
 import { waitFor } from '@testing-library/react';
-import { App } from './App';
-import { renderWithRouter } from './mocks/render-with-providers';
+import { App } from '../App';
+import { renderWithRouter } from './config/render-with-providers';
 
 describe('App', () => {
 	it('renders without crashing', () => {

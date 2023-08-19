@@ -1,0 +1,132 @@
+/* estilos para el grid de 12 columnas */
+$prefix: 'o-grid';
+$padding: t-px-rem(10);
+.o-container {
+	margin: 0 auto;
+}
+.o-row {
+	display: flex;
+
+	&.flex-wrap {
+		flex-wrap: wrap;
+	}
+
+	&.o-direction- {
+		@each $cssValue in (column, row, row-reverse) {
+			&#{$cssValue} {
+				flex-direction: $cssValue;
+			}
+		}
+	}
+
+	&.o-gap- {
+		@each $name, $value in $breakpoints {
+			&#{$name} {
+				gap: t-px-rem($value);
+
+				> div[class*='#{$prefix}-'] {
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
+	}
+
+	&:not([class*='o-gap-']):has(> [class*='#{$prefix}-']) {
+		margin-left: -$padding;
+		margin-right: -$padding;
+	}
+
+	> div[class*='#{$prefix}-'] {
+		box-sizing: border-box;
+	}
+	> div:not([class*='#{$prefix}-']) {
+		flex: 1 1 auto;
+	}
+	@for $i from 1 through $s-grid-rows {
+		.#{$prefix}-#{$i} {
+			flex-basis: calc($i / $s-grid-rows) * 100%;
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+		.#{$prefix}-offset-#{$i} {
+			margin-left: calc($i / $s-grid-rows) * 100%;
+			padding-left: $padding;
+			padding-right: $padding;
+		}
+		@each $sizeLabel, $value in $breakpoints {
+			[class*='#{$prefix}-offset-#{$sizeLabel}-'] {
+				margin-left: 0;
+			}
+			.#{$prefix}-#{$sizeLabel}-#{$i} {
+				flex-basis: 100%;
+				padding-left: $padding;
+				padding-right: $padding;
+			}
+		}
+	}
+	@each $classLabel,
+		$cssValue
+			in (align-start flex-start, align-center center, align-end flex-end)
+	{
+		> div[class*='#{$prefix}-'].#{$classLabel} {
+			align-self: $cssValue;
+		}
+	}
+	@each $classLabel,
+		$cssValue
+			in (
+				align-start flex-start,
+				align-center center,
+				align-end flex-end,
+				space-around space-around,
+				space-between space-between,
+				space-evenly space-evenly
+			)
+	{
+		&.#{$classLabel} {
+			justify-content: $cssValue;
+			@if $classLabel == align-center {
+				align-items: $cssValue;
+				align-self: $cssValue;
+			}
+		}
+	}
+	@each $classLabel,
+		$cssValue in (center center, start start, baseline baseline, end end)
+	{
+		&.vertical-align-#{$classLabel} {
+			align-items: $cssValue;
+		}
+	}
+}
+@each $sizeLabel, $value in $breakpoints {
+	@media only screen and (min-width: t-px-rem($value)) {
+		@for $i from 1 through $s-grid-rows {
+			.o-row > .#{$prefix}-#{$sizeLabel}-#{$i} {
+				flex-basis: calc($i / $s-grid-rows) * 100%;
+				padding-left: $padding;
+				padding-right: $padding;
+			}
+			.o-row > .#{$prefix}-offset-#{$sizeLabel}-#{$i} {
+				margin-left: calc($i / $s-grid-rows) * 100%;
+			}
+		}
+	}
+	.container {
+		width: if(
+			index(($breakpoints), ($sizeLabel $value)) > 2,
+			t-px-rem($value),
+			99%
+		);
+	}
+}
+
+.o-align- {
+	@each $cssValue in (start, center, end) {
+		&#{$cssValue} {
+			display: flex;
+			align-items: $cssValue;
+		}
+	}
+}

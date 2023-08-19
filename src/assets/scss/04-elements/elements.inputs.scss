@@ -1,0 +1,11 @@
+.input {
+	padding: 0.7rem 1rem;
+	border: 1px solid $color-secondary;
+	border-radius: 0.25rem;
+	box-shadow: inset -1px 1px 2px 0px $color-secondary;
+}
+
+.input::placeholder {
+	color: $color-placeholder;
+	font-weight: 600;
+}

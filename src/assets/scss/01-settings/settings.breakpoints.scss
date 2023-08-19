@@ -1,0 +1,25 @@
+/* ==========================================================================
+   #BREAKPOINTS-VARIABLES
+   ========================================================================== */
+
+$bkp-mobile: 320;
+$bkp-phablet: 640;
+$bkp-tablet: 768;
+$bkp-desktop: 980;
+$bkp-wide: 1280;
+$bkp-hd: 1920;
+
+$breakpoints: (
+	xs: $bkp-mobile,
+	sm: $bkp-phablet,
+	md: $bkp-tablet,
+	lg: $bkp-desktop,
+	xl: $bkp-wide,
+	xxl: $bkp-hd,
+);
+
+/**
+ * Breakpoints needed for sass-mq mixin
+ */
+
+$mq-breakpoints: $breakpoints !default;

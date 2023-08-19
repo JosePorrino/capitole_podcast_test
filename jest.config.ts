@@ -4,13 +4,16 @@ const config: Config = {
 	verbose: true,
 	rootDir: './src',
 	testEnvironment: 'jsdom',
-	setupFilesAfterEnv: ['<rootDir>/mocks/setup-tests.ts'],
+	setupFilesAfterEnv: ['<rootDir>/tests/config/setup-tests.ts'],
 	extensionsToTreatAsEsm: ['.ts', '.tsx'],
 	moduleDirectories: ['node_modules', 'src'],
 	transform: {
 		'.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
 			'jest-transform-stub',
 		'^.+\\.tsx?$': ['ts-jest', { rootDir: '.' }],
+	},
+	moduleNameMapper: {
+		'^@/(.*)$': '<rootDir>/$1',
 	},
 	coverageDirectory: 'coverage',
 	coverageThreshold: {

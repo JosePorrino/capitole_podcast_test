@@ -1,0 +1,8 @@
+.pulse-loader {
+	@include pulse-animation(1s);
+
+	border-radius: 50%;
+	background-color: $color-primary;
+	width: 18px;
+	height: 18px;
+}

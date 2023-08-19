@@ -1,14 +1,19 @@
 import { Link, Outlet } from 'react-router-dom';
-import './App.css';
+import { Header } from '@/components/header';
+import { useLoading } from '@/hooks/useLoader';
 
 export const App: React.FC = () => {
+	const { isLoading } = useLoading();
 	return (
 		<div className='app-layout'>
-			<Link className='no-style' to={'/'}>
-				<h1>Podcasts</h1>
-			</Link>
+			<Header>
+				<Link to={'/'}>
+					<h1>Podcasts</h1>
+				</Link>
+				{isLoading && <div className='pulse-loader' />}
+			</Header>
 
-			<main className='app-layout__main'>
+			<main>
 				<Outlet />
 			</main>
 		</div>
