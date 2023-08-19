@@ -1,0 +1,41 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+art_ascii=$(cat << "EOF"
+______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|
+______         _               _     _____         _   
+| ___ \       | |             | |   |_   _|       | |  
+| |_/ /__   __| | ___ __ _ ___| |_    | | ___  ___| |_ 
+|  __/ _ \ / _` |/ __/ _` / __| __|   | |/ _ \/ __| __|
+| | | (_) | (_| | (_| (_| \__ \ |_    | |  __/\__ \ |_ 
+\_|  \___/ \__,_|\___\__,_|___/\__|   \_/\___||___/\__|
+ ______ ______ ______ ______ ______ ______ ______ ______ ______ 
+|______|______|______|______|______|______|______|______|______|
+                                                                       
+EOF
+)
+
+echo "$art_ascii"
+echo '🏗️👷 Revisando tu proyecto antes de confirmar'
+echo 'Por favor, ten paciencia, esto puede llevar un tiempo...'
+
+# Comprobar los test
+npm run test || (
+    echo '🔨❌ ¡Oops! Tienes un problema en tu código. Comprueba tus test 🔨❌
+          Ejecuta npm run test, agrega los cambios y vuelve a intentar confirmar.';
+    false;
+)
+
+# Comprobar los estándares de ESLint
+npm run eslint ||
+(
+    echo '🔨❌ ¡Oops! Tienes un problema en tu código. Comprueba el linter 🔨❌
+          Ejecuta npm run eslint, agrega los cambios y vuelve a intentar confirmar.';
+    false;
+)
+
+echo "🏗️👷 Linting/Formatting ..."
+npx lint-staged
+
+echo '🎉 No se encontraron errores: confirmando ahora.... ✨🚀🏄‍♂️🍻'

@@ -1,0 +1,22 @@
+{
+	"extends": ["airbnb-typescript", "prettier"],
+	"plugins": ["import", "react", "prettier"],
+	"parserOptions": {
+		"parser": "@typescript-eslint/parser",
+		"project": "./tsconfig.json"
+	},
+	"rules": {
+		"prettier/prettier": ["error", { "endOfLine": "auto" }],
+		"arrow-body-style": "off",
+		"prefer-arrow-callback": "off",
+		"max-len": [
+			"error",
+			{ "code": 180, "ignoreTemplateLiterals": true, "ignoreStrings": true }
+		],
+		"@typescript-eslint/no-unused-vars": "warn",
+		"@typescript-eslint/no-shadow": "warn",
+		"react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+		"import/extensions": "off"
+	}
+}
