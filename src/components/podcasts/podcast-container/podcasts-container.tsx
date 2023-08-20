@@ -1,7 +1,31 @@
+import { useEffect } from 'react';
 import { useLoading } from '@/hooks/useLoader';
+// import { usePodcasts } from '@/hooks/usePodcast';
 
 export const PodcastsContainer = () => {
 	const { startLoading, stopLoading } = useLoading();
+
+	// const { getPodcasts, getEpisodes } = usePodcasts();
+
+	// const loadPodcasts = async () => {
+	// 	const podcasts = await getPodcasts();
+	// 	console.log(
+	// 		'🚀 ~ file: podcasts-container.tsx:11 ~ loadData ~ podcasts:',
+	// 		podcasts
+	// 	);
+	// };
+	// const loadEpisodes = async () => {
+	// 	const episodes = await getEpisodes('1493353598');
+	// 	console.log(
+	// 		'🚀 ~ file: episodes-container.tsx:11 ~ loadData ~ episodes:',
+	// 		episodes
+	// 	);
+	// };
+
+	useEffect(() => {
+		// loadPodcasts();
+		// loadEpisodes();
+	}, []);
 
 	const handleStartLoading = () => {
 		startLoading();
