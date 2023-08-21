@@ -11,7 +11,7 @@ export const mapperEpisodesResponse = (
 			name: episode.trackName,
 			description: episode.description,
 			url: episode.previewUrl,
-			releaseDate: new Date(episode.releaseDate),
+			releaseDate: episode.releaseDate,
 			duration: episode.trackTimeMillis,
 		}));
 };

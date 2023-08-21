@@ -9,6 +9,7 @@ import { Podcast } from '@/modules/podcast/domain/models/Podcast';
 
 export const PodcastsContainer = () => {
 	const [search, setSearch] = useState('');
+	const [firstTime, setFirstTime] = useState(true);
 
 	const podcastList = usePodcast();
 	const isLoading = useLoading();
@@ -17,7 +18,11 @@ export const PodcastsContainer = () => {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			handleSearchPodcast(search);
+			if (firstTime) {
+				setFirstTime(false);
+			} else {
+				handleSearchPodcast(search);
+			}
 		}, 1000);
 
 		return () => clearTimeout(timer);
@@ -31,6 +36,7 @@ export const PodcastsContainer = () => {
 				</span>
 				<Input
 					type='text'
+					defaultValue={searchPodcast}
 					placeholder='Filter podcasts...'
 					onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
 						setSearch(event.target.value)

@@ -6,19 +6,31 @@ import store from '@/redux/store/configureStore';
 import { ROUTES } from '@/constants/app.constants';
 import { ErrorBoundary } from '@/components/error-boundary';
 
-const Home = lazy(() =>
-	import('../pages/home/home').then(module => ({ default: module.Home }))
-);
-
 const NotFoundPage = lazy(() =>
 	import('../pages/not-found/not-found-page').then(module => ({
 		default: module.NotFoundPage,
 	}))
 );
 
+const Home = lazy(() =>
+	import('../pages/home/home').then(module => ({ default: module.Home }))
+);
+
 const PodcastPage = lazy(() =>
 	import('../pages/podcast/podcast-page').then(module => ({
 		default: module.PodcastPage,
+	}))
+);
+
+const EpisodeContainer = lazy(() =>
+	import('../components/episodes/episode-container').then(module => ({
+		default: module.EpisodeContainer,
+	}))
+);
+
+const EpisodeDetail = lazy(() =>
+	import('../components/episodes/episode-detail').then(module => ({
+		default: module.EpisodeDetail,
 	}))
 );
 
@@ -52,6 +64,24 @@ const router = (parentElement: React.ReactNode) =>
 							<PodcastPage />
 						</Suspense>
 					),
+					children: [
+						{
+							path: ROUTES.PODCAST_INFO,
+							element: (
+								<Suspense>
+									<EpisodeContainer />
+								</Suspense>
+							),
+						},
+						{
+							path: ROUTES.EPISODE_INFO,
+							element: (
+								<Suspense>
+									<EpisodeDetail />
+								</Suspense>
+							),
+						},
+					],
 				},
 			],
 		},
