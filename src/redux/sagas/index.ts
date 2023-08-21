@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects';
-import { rootSaga as loadingSaga } from './loadingSaga';
+import { watchSetSearchPodcast } from './podcastSaga';
 
 function* rootSaga() {
-	yield all([loadingSaga()]);
+	yield all([watchSetSearchPodcast()]);
 }
 
 export default rootSaga;

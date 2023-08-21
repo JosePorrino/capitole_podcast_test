@@ -1,5 +1,9 @@
 import { PodcastsContainer } from '@/components/podcasts/podcast-container';
 
 export const Home = () => {
-	return <PodcastsContainer />;
+	return (
+		<div className='podcasts-container'>
+			<PodcastsContainer />
+		</div>
+	);
 };

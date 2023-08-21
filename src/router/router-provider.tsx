@@ -10,6 +10,18 @@ const Home = lazy(() =>
 	import('../pages/home/home').then(module => ({ default: module.Home }))
 );
 
+const NotFoundPage = lazy(() =>
+	import('../pages/not-found/not-found-page').then(module => ({
+		default: module.NotFoundPage,
+	}))
+);
+
+const PodcastPage = lazy(() =>
+	import('../pages/podcast/podcast-page').then(module => ({
+		default: module.PodcastPage,
+	}))
+);
+
 const router = (parentElement: React.ReactNode) =>
 	createBrowserRouter([
 		{
@@ -22,6 +34,22 @@ const router = (parentElement: React.ReactNode) =>
 					element: (
 						<Suspense>
 							<Home />
+						</Suspense>
+					),
+				},
+				{
+					path: ROUTES.NOT_FOUND,
+					element: (
+						<Suspense>
+							<NotFoundPage />
+						</Suspense>
+					),
+				},
+				{
+					path: ROUTES.PODCAST_INFO,
+					element: (
+						<Suspense>
+							<PodcastPage />
 						</Suspense>
 					),
 				},

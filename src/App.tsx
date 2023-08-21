@@ -1,9 +1,9 @@
 import { Link, Outlet } from 'react-router-dom';
 import { Header } from '@/components/header';
-import { useLoading } from '@/hooks/useLoader';
+import useLoading from '@/hooks/useLoading';
 
 export const App: React.FC = () => {
-	const { isLoading } = useLoading();
+	const isLoading = useLoading();
 	return (
 		<div className='app-layout'>
 			<Header>

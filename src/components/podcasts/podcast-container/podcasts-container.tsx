@@ -1,54 +1,56 @@
-import { useEffect } from 'react';
-import { useLoading } from '@/hooks/useLoader';
-// import { usePodcasts } from '@/hooks/usePodcast';
+import { useState, useEffect } from 'react';
+import { PodcastElement } from '../podcast-element/podcast-element';
+import { PodcastSkeleton } from '../podcast-skeleton';
+import { Input } from '@/components/input/input';
+import { useSearchPodcast } from '@/hooks/useSearchPodcast';
+import usePodcast from '@/hooks/usePodcast';
+import useLoading from '@/hooks/useLoading';
+import { Podcast } from '@/modules/podcast/domain/models/Podcast';
 
 export const PodcastsContainer = () => {
-	const { startLoading, stopLoading } = useLoading();
+	const [search, setSearch] = useState('');
 
-	// const { getPodcasts, getEpisodes } = usePodcasts();
-
-	// const loadPodcasts = async () => {
-	// 	const podcasts = await getPodcasts();
-	// 	console.log(
-	// 		'🚀 ~ file: podcasts-container.tsx:11 ~ loadData ~ podcasts:',
-	// 		podcasts
-	// 	);
-	// };
-	// const loadEpisodes = async () => {
-	// 	const episodes = await getEpisodes('1493353598');
-	// 	console.log(
-	// 		'🚀 ~ file: episodes-container.tsx:11 ~ loadData ~ episodes:',
-	// 		episodes
-	// 	);
-	// };
+	const podcastList = usePodcast();
+	const isLoading = useLoading();
+	const { filterPodcats, searchPodcast, handleSearchPodcast } =
+		useSearchPodcast();
 
 	useEffect(() => {
-		// loadPodcasts();
-		// loadEpisodes();
-	}, []);
+		const timer = setTimeout(() => {
+			handleSearchPodcast(search);
+		}, 1000);
 
-	const handleStartLoading = () => {
-		startLoading();
-	};
+		return () => clearTimeout(timer);
+	}, [search]);
 
-	const handleStopLoading = () => {
-		stopLoading();
-	};
 	return (
 		<div className='podcasts-container'>
-			Home Podcasts
-			<div className='o-row u-margin:v-24'>
-				<div className='o-grid-2'>Test</div>
-				<div className='o-grid-5 o-align-center'>
-					<button className='c-btn' onClick={handleStartLoading}>
-						Start Loading
-					</button>
-				</div>
-				<div className='o-grid-5 o-align-center'>
-					<button className='c-btn' onClick={handleStopLoading}>
-						Stop Loading
-					</button>
-				</div>
+			<div className='podcasts-filter'>
+				<span data-testid='counter' className='badge'>
+					{searchPodcast ? filterPodcats?.length : podcastList?.length}
+				</span>
+				<Input
+					type='text'
+					placeholder='Filter podcasts...'
+					onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+						setSearch(event.target.value)
+					}
+				/>
+			</div>
+			<div className='podcasts-list'>
+				{searchPodcast
+					? filterPodcats.map((podcast: Podcast) => (
+							<PodcastElement key={podcast.id} podcast={podcast} />
+					  ))
+					: podcastList.map((podcast: Podcast) => (
+							<PodcastElement key={podcast.id} podcast={podcast} />
+					  ))}
+				{isLoading && <PodcastSkeleton />}
+				{filterPodcats?.length === 0 && searchPodcast !== '' && (
+					<p>
+						No podcasts found for search: <b>{searchPodcast}</b>
+					</p>
+				)}
 			</div>
 		</div>
 	);

@@ -42,10 +42,6 @@ export class ApiPodcast implements PodcastRepository {
 				Episode[]
 			>(url, { proxy: { host: PROXY_URL, port: 80 } });
 			const { data } = response;
-			console.log(
-				'🚀 ~ file: ApiPodcast.ts:43 ~ ApiPodcast ~ getEpisodesList ~ data:',
-				data
-			);
 			return mapperEpisodesResponse(data as unknown as EpisodesServiceResponse);
 		} catch (error) {
 			console.error(error);

@@ -6,11 +6,8 @@ export const useBrowserStore = <T>() => {
 		value: T,
 		expirationTime = defaultExpirationTime
 	) => {
-		if (value instanceof Map) {
-			localStorage.setItem(key, JSON.stringify([...value]));
-		} else {
-			localStorage.setItem(key, JSON.stringify(value));
-		}
+		localStorage.setItem(key, JSON.stringify(value));
+
 		localStorage.setItem(
 			`${key}_exp`,
 			JSON.stringify(Date.now() + expirationTime)
