@@ -4,6 +4,8 @@ Welcome to Capitole Podcast! This application allows you to enjoy your favorite 
 
 Enjoy the listening experience! 🎧🎶
 
+[Project Deployment URL](https://capitole-podcast-test.vercel.app/)
+
 ## Installation
 
 1. Clone this repository to your local machine.

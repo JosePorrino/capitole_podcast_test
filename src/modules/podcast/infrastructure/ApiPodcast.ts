@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosResponse } from 'axios';
-import { PATHS, PROXY_URL } from './constants/endpoints';
+import { BASE_URL, PATHS, PROXY_URL } from './constants/endpoints';
 import { GENRE, MAX_LIMIT, MIN_LIMIT } from './constants/api.constants';
 import { PodcastRepository } from '../domain/models/PodcastRepository';
 import { Podcast } from '../domain/models/Podcast';
@@ -37,10 +37,11 @@ export class ApiPodcast implements PodcastRepository {
 		id: string
 	): Promise<Episode[]> {
 		try {
-			const url = PATHS.ESPISODES_URL.replace('{id}', id);
-			const response: AxiosResponse<Episode[]> = await axiosInstance.get<
-				Episode[]
-			>(url, { proxy: { host: PROXY_URL, port: 80 } });
+			const url = `${PROXY_URL}${encodeURIComponent(
+				`${BASE_URL}${PATHS.ESPISODES_URL.replace('{id}', id)}`
+			)}`;
+			const response: AxiosResponse<Episode[]> =
+				await axiosInstance.get<Episode[]>(url);
 			const { data } = response;
 			return mapperEpisodesResponse(data as unknown as EpisodesServiceResponse);
 		} catch (error) {
