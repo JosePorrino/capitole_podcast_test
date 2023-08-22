@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { setEpisodesList } from '@/redux/actions/episodeAction';
 import { RootState } from '@/redux/reducers';
 import { useBrowserStore } from './useBrowserStore';
-import { Episode } from '@/modules/podcast/domain/models/Episode';
 import { setLoading } from '@/redux/actions/loadingAction';
 
 const useEpisodes = (podcastId: string) => {
@@ -19,7 +18,7 @@ const useEpisodes = (podcastId: string) => {
 			episodesPodcastId: state.episodesReducer.episodesPodcastId,
 		})
 	);
-	const { setItem, getItem, removeItem } = useBrowserStore();
+	const { setItem, removeItem } = useBrowserStore();
 
 	useEffect(() => {
 		if (episodesPodcastId !== podcastId) {
@@ -32,24 +31,17 @@ const useEpisodes = (podcastId: string) => {
 
 	useEffect(() => {
 		const loadEpisodes = async () => {
-			const storedEpisodes = getItem('episodesList') as Episode[];
+			const podcastApi = new PodcastService(new ApiPodcast());
+			try {
+				dispatch(setLoading(true));
+				const episodes = await podcastApi.getEpisodes(podcastId);
+				dispatch(setEpisodesList(episodes));
+				dispatch(setLoading(false));
 
-			if (storedEpisodes) {
-				dispatch(setEpisodesList(storedEpisodes));
-			} else {
-				const podcastApi = new PodcastService(new ApiPodcast());
-				try {
-					dispatch(setLoading(true));
-					const episodes = await podcastApi.getEpisodes(podcastId);
-					dispatch(setEpisodesList(episodes));
-					dispatch(setLoading(false));
-
-					if (shouldFetchEpisodes) {
-						setItem('episodesList', episodes);
-					}
-				} catch (error) {
-					console.error('Error fetching podcasts', error);
-				}
+				setItem('episodesList', episodes);
+				setItem('episodesPodcastId', podcastId);
+			} catch (error) {
+				console.error('Error fetching podcasts', error);
 			}
 		};
 

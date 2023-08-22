@@ -6,26 +6,22 @@ import { useSearchPodcast } from '@/hooks/useSearchPodcast';
 import usePodcast from '@/hooks/usePodcast';
 import useLoading from '@/hooks/useLoading';
 import { Podcast } from '@/modules/podcast/domain/models/Podcast';
+import { useDebounceCallback } from '@/hooks/useDebounceCallback';
 
 export const PodcastsContainer = () => {
 	const [search, setSearch] = useState('');
-	const [firstTime, setFirstTime] = useState(true);
 
 	const podcastList = usePodcast();
 	const isLoading = useLoading();
 	const { filterPodcats, searchPodcast, handleSearchPodcast } =
 		useSearchPodcast();
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			if (firstTime) {
-				setFirstTime(false);
-			} else {
-				handleSearchPodcast(search);
-			}
-		}, 1000);
+	const debouncedFilter = useDebounceCallback(() => {
+		handleSearchPodcast(search);
+	}, 500);
 
-		return () => clearTimeout(timer);
+	useEffect(() => {
+		debouncedFilter();
 	}, [search]);
 
 	return (
@@ -43,7 +39,7 @@ export const PodcastsContainer = () => {
 					}
 				/>
 			</div>
-			<div className='podcasts-list'>
+			<div className='podcasts-list' data-testid='podcast-list'>
 				{searchPodcast
 					? filterPodcats.map((podcast: Podcast) => (
 							<PodcastElement key={podcast.id} podcast={podcast} />

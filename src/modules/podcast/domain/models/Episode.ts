@@ -3,6 +3,6 @@ export interface Episode {
 	name: string;
 	description: string | undefined;
 	releaseDate: string;
-	duration: number | undefined;
+	duration?: number | undefined;
 	url: string | undefined;
 }
