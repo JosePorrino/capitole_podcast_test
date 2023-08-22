@@ -4,6 +4,26 @@ Welcome to Capitole Podcast! This application allows you to enjoy your favorite 
 
 Enjoy the listening experience! 🎧🎶
 
+## Installation
+
+1. Clone this repository to your local machine.
+2. Run the command `npm install` to install the dependencies.
+3. After installing dependencies, run `npm run dev` to start the development server using Vite.
+
+## Scripts
+
+- `npm run dev`: Start the development server with Vite.
+- `npm run build:dev`: Compile the project in development mode.
+- `npm run build:prod`: Compile the project in production mode.
+- `npm run preview`: Start a server to preview the compiled project.
+- `npm test`: Run tests with Jest.
+- `npm run test:watch`: Run tests in watch mode with coverage.
+- `npm run eslint`: Run ESLint to analyze the code.
+- `npm run eslint:fix`: Run ESLint to automatically analyze and fix the code.
+- `npm run prettier`: Check code formatting with Prettier.
+- `npm run prettier:fix`: Automatically format code according to Prettier rules.
+- `npm run prepare`: Install Husky to set up pre-commit hooks.
+
 ### Key Features
 
 - **Main View:** Explore a carefully curated list of musical podcasts. Scroll through the options, read descriptions, and choose the podcast that resonates with you.
@@ -24,7 +44,24 @@ Enjoy the listening experience! 🎧🎶
 
 - **ITCSS Architecture:** The Inverted Triangle CSS (ITCSS) architecture is employed for maintaining a scalable and maintainable CSS structure.
 
-- **Redux Saga Toolkit:** Manage application state and side effects efficiently with Redux Saga Toolkit, providing a powerful approach to handling asynchronous operations.
+Certainly, here's the updated section with information about Redux, Sagas, and Toolkit:
+
+markdown
+Copy code
+
+### Additional Features and Technologies
+
+- **Linting and Formatting:** This project enforces code quality and consistent formatting using ESLint and Prettier. Husky is set up to automatically run these checks before commits.
+
+- **Routing with React Router DOM:** Navigate seamlessly through different views of the application with the powerful React Router DOM library.
+
+- **Unit Testing with Jest:** Ensure your code's reliability with comprehensive unit tests using the Jest testing framework and React Testing Library.
+
+- **Hexagonal Architecture with Axios:** The project follows a hexagonal architecture pattern for clean separation of concerns, and Axios is utilized for making HTTP requests in a modular way.
+
+- **ITCSS Architecture:** The Inverted Triangle CSS (ITCSS) architecture is employed for maintaining a scalable and maintainable CSS structure.
+
+- **Redux Saga Toolkit:** Manage application state and side effects efficiently with Redux Saga Toolkit, providing a powerful approach to handling asynchronous operations. This includes integrating Redux and Redux Saga libraries to facilitate state management and asynchronous workflows within your application.
 
 ### Main View - Requirements:
 
@@ -53,45 +90,40 @@ Enjoy the listening experience! 🎧🎶
 - Show a main section that displays the podcast's title, description, and a basic audio player (native HTML5) for playing the podcast.
 - Take into consideration that some episode descriptions contain HTML, and this should be interpreted (not escaped) when displayed.
 
-### Development and Production Modes
+## Main Dependencies
 
-To suit your needs, Capitole Podcast offers two operational modes:
+- [@reduxjs/toolkit](https://redux-toolkit.js.org/): Library for state management in Redux.
+- [axios](https://axios-http.com/): HTTP client for making requests.
+- [react](https://reactjs.org/): Core library for building user interfaces.
+- [react-dom](https://reactjs.org/docs/react-dom.html): DOM-specific utilities for React.
+- [react-redux](https://react-redux.js.org/): Redux integration with React.
+- [react-router-dom](https://reactrouter.com/web/guides/quick-start): Routing for React applications.
+- [redux-saga](https://redux-saga.js.org/): Library for handling side effects in Redux.
 
-- **Development Mode:** In this mode, assets are served without minification, making debugging and development easier. Files can be concatenated if desired.
+## Development Dependencies
 
-- **Production Mode:** When switching to production mode, assets are served concatenated and minified, optimizing performance and application loading. Enjoy a more efficient experience while exploring your favorite podcasts.
-
-### Scripts
-
-This package provides several scripts that you can use to perform various tasks:
-
-- `dev`: Start the development server using Vite.
-- `build`: Build the project by transpiling TypeScript code with TypeScript Compiler (`tsc`) and then bundling with Vite.
-- `lint`: Lint the TypeScript and TypeScript React code using ESLint and specific rules for TypeScript (`@typescript-eslint/eslint-plugin`).
-- `preview`: Start a server to preview the production build of your project using Vite.
-
-### Dependencies
-
-This package has the following dependencies:
-
-- `react` (^18.2.0): A JavaScript library for building user interfaces.
-- `react-dom` (^18.2.0): A package that provides DOM-specific methods for React.
-
-### Dev Dependencies
-
-In addition to the dependencies, this package also has the following dev dependencies:
-
-- `@types/react` (^18.2.15): Type declarations for React.
-- `@types/react-dom` (^18.2.7): Type declarations for React DOM.
-- `@typescript-eslint/eslint-plugin` (^6.0.0): ESLint plugin for TypeScript.
-- `@typescript-eslint/parser` (^6.0.0): TypeScript parser for ESLint.
-- `@vitejs/plugin-react` (^4.0.3): Vite plugin for React integration.
-- `eslint` (^8.45.0): A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript.
-- `eslint-plugin-react-hooks` (^4.6.0): ESLint plugin for enforcing the Rules of Hooks in React.
-- `eslint-plugin-react-refresh` (^0.4.3): ESLint plugin for React Refresh.
-- `typescript` (^5.0.2): A superset of JavaScript that adds static types to the language.
-- `vite` (^4.4.5): A fast build tool and development server that streamlines the development experience.
-
-### License
-
-This package does not specify a license. Make sure to refer to the package's documentation or source code to determine the licensing terms.
+- [@testing-library/jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/): Jest extensions for DOM testing.
+- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro/): Utilities for testing React components.
+- [@testing-library/user-event](https://testing-library.com/docs/ecosystem-user-event/): Library for simulating user events in tests.
+- [@types/jest](https://www.npmjs.com/package/@types/jest): TypeScript types for Jest.
+- [@types/node](https://www.npmjs.com/package/@types/node): TypeScript types for Node.js.
+- [@types/react](https://www.npmjs.com/package/@types/react): TypeScript types for React.
+- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): TypeScript types for react-dom.
+- [@typescript-eslint/eslint-plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin): ESLint rules specific to TypeScript.
+- [@typescript-eslint/parser](https://www.npmjs.com/package/@typescript-eslint/parser): TypeScript parser for ESLint.
+- [@vitejs/plugin-react](https://vitejs.dev/guide/features.html#react): Vite plugin for React support.
+- [eslint](https://eslint.org/): Static code analysis tool.
+- [eslint-config-airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript): Airbnb style-based ESLint configuration for TypeScript.
+- [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks): ESLint rules for React hooks.
+- [eslint-plugin-react-refresh](https://www.npmjs.com/package/eslint-plugin-react-refresh): ESLint rules for React Refresh.
+- [husky](https://typicode.github.io/husky/#/): Tool to set up Git hooks.
+- [jest](https://jestjs.io/): JavaScript testing framework.
+- [jest-environment-jsdom](https://jestjs.io/docs/configuration#testenvironment-string): Jest test environment based on JSDOM.
+- [jest-transform-stub](https://www.npmjs.com/package/jest-transform-stub): Transformer for static imports in Jest tests.
+- [lint-staged](https://github.com/okonet/lint-staged): Run commands only on modified files in Git.
+- [prettier](https://prettier.io/): Code formatter.
+- [sass](https://sass-lang.com/): CSS preprocessor.
+- [ts-jest](https://www.npmjs.com/package/ts-jest): TypeScript adapter for Jest.
+- [ts-node](https://www.npmjs.com/package/ts-node): TypeScript execution in Node.js.
+- [typescript](https://www.typescriptlang.org/): Superset of JavaScript with static types.
+- [vite](https://vitejs.dev/): Fast and reactive web app building.
