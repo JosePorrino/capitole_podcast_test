@@ -13,7 +13,7 @@ describe('App', () => {
 
 	it("renders the header with the text 'Podcasts'", () => {
 		const { getByRole } = renderWithRouter(<App />);
-		const header = getByRole('heading', { name: /podcasts/i });
+		const header = getByRole('heading', { name: /podcaster/i });
 
 		waitFor(() => {
 			expect(header).toBeInTheDocument();

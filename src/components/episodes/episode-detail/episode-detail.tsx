@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { parseTextToHtml } from '@/utils/formatters';
@@ -31,6 +31,17 @@ export const EpisodeDetail = () => {
 		loadData();
 	}, [episodeList]);
 
+	const [isLoadingAudio, setIsLoadingAudio] = useState(true);
+	const audioRef = createRef<HTMLAudioElement>();
+
+	const handleLoadStart = () => {
+		setIsLoadingAudio(true);
+	};
+
+	const handleLoadedData = () => {
+		setIsLoadingAudio(false);
+	};
+
 	return (
 		<div className='episode-detail'>
 			{episode ? (
@@ -43,9 +54,15 @@ export const EpisodeDetail = () => {
 						}}
 					/>
 					<hr />
+					{isLoadingAudio && <div>Loading audio...</div>}
 					<audio
-						className='episode-detail-audio-controls'
+						className={`episode-detail-audio-controls ${
+							isLoadingAudio ? 'loading' : ''
+						}`}
+						ref={audioRef}
 						controls
+						onLoadedData={handleLoadedData}
+						onLoadStart={handleLoadStart}
 						src={episode?.url}
 					/>
 				</Card>

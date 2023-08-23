@@ -29,12 +29,12 @@ export const PodcastPage = () => {
 
 	return (
 		<div className='podcast-page'>
-			<div className='podcast-page-container'>
-				<aside className='podcast-page-aside'>
+			<div className='podcast-page-container o-row'>
+				<aside className='podcast-page-aside o-grid-3'>
 					{podcast && <PodcastDetail podcast={podcast} />}
 					{!podcast && <PodcastSkeleton />}
 				</aside>
-				<section className='podcast-page-section'>
+				<section className='podcast-page-section o-grid-9'>
 					<Outlet />
 				</section>
 			</div>

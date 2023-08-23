@@ -1,4 +1,4 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Header } from '@/components/header';
@@ -11,11 +11,13 @@ import {
 } from '@/redux/actions/episodeAction';
 import { Podcast } from '@/modules/podcast/domain/models/Podcast';
 import { Episode } from '@/modules/podcast/domain/models/Episode';
+import { ROUTES } from '@/constants/app.constants';
 
 export const App: React.FC = () => {
 	const isLoading = useLoading();
 	const dispatch = useDispatch();
 	const { getItem } = useBrowserStore();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const loadCache = () => {
@@ -41,14 +43,21 @@ export const App: React.FC = () => {
 		loadCache();
 	}, []);
 
+	const handleBack = () => navigate(-1);
+
 	return (
 		<div className='app-layout'>
 			<Header>
 				<Link to={'/'}>
-					<h1>Podcasts</h1>
+					<h1>Podcaster</h1>
 				</Link>
 				{isLoading && <div className='pulse-loader' />}
 			</Header>
+			{location.pathname !== ROUTES.HOME && (
+				<div className='o-row o-align-end'>
+					<a onClick={handleBack}>Go back</a>
+				</div>
+			)}
 
 			<main>
 				<Outlet />

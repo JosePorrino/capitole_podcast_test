@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { PodcastElement } from '../podcast-element/podcast-element';
-import { PodcastSkeleton } from '../podcast-skeleton';
+import { PodcastSkeletonLine } from '../podcast-skeleton';
 import { Input } from '@/components/input/input';
 import { useSearchPodcast } from '@/hooks/useSearchPodcast';
 import usePodcast from '@/hooks/usePodcast';
@@ -39,6 +39,7 @@ export const PodcastsContainer = () => {
 					}
 				/>
 			</div>
+			{isLoading && <PodcastSkeletonLine />}
 			<div className='podcasts-list' data-testid='podcast-list'>
 				{searchPodcast
 					? filterPodcats.map((podcast: Podcast) => (
@@ -47,7 +48,6 @@ export const PodcastsContainer = () => {
 					: podcastList.map((podcast: Podcast) => (
 							<PodcastElement key={podcast.id} podcast={podcast} />
 					  ))}
-				{isLoading && <PodcastSkeleton />}
 				{filterPodcats?.length === 0 && searchPodcast !== '' && (
 					<p>
 						No podcasts found for search: <b>{searchPodcast}</b>

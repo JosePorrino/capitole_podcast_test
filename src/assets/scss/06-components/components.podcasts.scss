@@ -42,7 +42,7 @@
 	margin-top: -5rem;
 }
 
-.podcast-element-title {
+.podcast-element-name {
 	text-transform: uppercase;
 	text-align: center;
 	font-size: 1.3rem;
@@ -51,11 +51,20 @@
 }
 
 .podcast-element-author {
-	color: var(--color-gray);
+	color: $color-grey;
 	font-size: 1.1rem;
 	font-weight: 500;
 	text-align: center;
 	margin: 0.5rem 0;
+}
+
+.podcast-skeleton-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+	grid-gap: 2.5rem;
+	grid-row-gap: 5rem;
+	padding: 1rem;
+	grid-auto-rows: auto;
 }
 
 .podcast-skeleton {

@@ -9,3 +9,8 @@
 .episode-detail-audio-controls {
 	width: 100%;
 }
+
+.episode-detail-audio-controls.loading {
+	opacity: 0.5;
+	pointer-events: none;
+}

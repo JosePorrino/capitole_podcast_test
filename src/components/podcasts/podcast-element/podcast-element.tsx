@@ -3,13 +3,12 @@ import { Podcast } from '@/modules/podcast/domain/models/Podcast';
 import { Link } from 'react-router-dom';
 
 interface PodcastElementProps {
-	className?: string;
 	podcast: Podcast;
 }
 
-export const PodcastElement = ({ className, podcast }: PodcastElementProps) => (
-	<div className={['podcast-element', className].join(' ')}>
-		<Link to={`${ROUTES.PODCAST}/${podcast.id}`}>
+export const PodcastElement = ({ podcast }: PodcastElementProps) => (
+	<div className='podcast-element'>
+		<Link className='no-style' to={`${ROUTES.PODCAST}/${podcast.id}`}>
 			<div className='podcast-element-content'>
 				<img
 					loading='lazy'

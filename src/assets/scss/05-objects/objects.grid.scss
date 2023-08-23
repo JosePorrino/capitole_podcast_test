@@ -127,6 +127,8 @@ $padding: t-px-rem(10);
 		&#{$cssValue} {
 			display: flex;
 			align-items: $cssValue;
+			justify-content: $cssValue;
+			padding: 5px;
 		}
 	}
 }

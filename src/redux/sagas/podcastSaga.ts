@@ -8,8 +8,10 @@ function* filterPodcastsSaga(action: ReturnType<typeof setSearchPodcast>) {
 		const { podcastList } = yield select(
 			(state: RootState) => state.podcastReducer
 		);
-		const filteredPodcasts = podcastList.filter((podcast: Podcast) =>
-			podcast.name.toLowerCase().includes(action.payload.toLowerCase())
+		const filteredPodcasts = podcastList.filter(
+			(podcast: Podcast) =>
+				podcast.name.toLowerCase().includes(action.payload.toLowerCase()) ||
+				podcast.author.toLowerCase().includes(action.payload.toLowerCase())
 		);
 
 		yield put(setFilterPodcast(filteredPodcasts));
